@@ -66,7 +66,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-cred', url: '') {
-                 sh "docker build -t gita/task-master:latest ."
+                 sh "docker build -t mounajmai/task-master:latest ."
                 
                 
             }
@@ -80,7 +80,7 @@ pipeline {
         stage('Docker push') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-cred', url: '') {
-                 sh "docker push gita/task-master:latest"
+                 sh "docker push mounajmai/task-master:latest"
                 
                 
             }
