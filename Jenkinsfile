@@ -90,7 +90,10 @@ pipeline {
             steps {
                 withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8-cred', namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.44.30:6443') {
                    
-                   sh "kubectl apply -f deployment-service.yml"
+                   sh """
+                   kubectl config set-credentials jenkins --token=\$(cat /var/jenkins_home/.k8-cred)
+                   kubectl apply -f deployment-service.yml
+                   """
             }
             }
         }
